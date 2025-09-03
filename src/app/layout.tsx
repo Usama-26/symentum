@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+import { Poppins } from "next/font/google";
+import localFont from "next/font/local";
+import Header from "./components/header";
+import Footer from "./components/footer";
+const clashDisplay = localFont({
+  src: "./fonts/clash-display/ClashDisplay-Variable.woff2",
+  display: "swap",
+  weight: "100 900",
+  variable: "--font-clash-display",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppins = Poppins({
   subsets: ["latin"],
+  display: "swap",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} ${clashDisplay.variable} font-sans antialiased`}
       >
+        <Header />
         {children}
+        {/* <Footer /> */}
       </body>
     </html>
   );
